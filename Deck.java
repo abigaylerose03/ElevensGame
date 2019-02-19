@@ -27,15 +27,18 @@ public class Deck {
      * and produces one of the corresponding card.
      * @param ranks is an array containing all of the card ranks.
      * @param suits is an array containing all of the card suits.
-     * @param values is an array containing all of the card point values.
+       * @param values is an array containing all of the card point values.
      */
     public Deck(String[] ranks, String[] suits, int[] values) {
-        this.cards = new ArrayList<Card>();
-        for (int i = 0; i < ranks.length; i++) {
-            Card aCard = new Card(ranks[i], suits[i], values[i]);
-            this.cards.add(aCard);
+        size = ranks.length * suits.length;
+        cards = new ArrayList<Card>();
+        for(int i = 0; i < suits.length; i++)
+        {
+            for(int j = 0; j < ranks.length; j++)
+            {
+                cards.add(new Card(ranks[j], suits[i], values[j]));
+            }
         }
-        this.size = this.cards.size();
         shuffle();
     }
 
@@ -45,10 +48,7 @@ public class Deck {
      * @return true if this deck is empty, false otherwise.
      */
     public boolean isEmpty() {
-        if (this.cards.size() == 0) {
-            return true;
-        }
-        return false;
+        return size == 0;
     }
 
     /**
@@ -56,7 +56,7 @@ public class Deck {
      * @return the number of undealt cards in this deck.
      */
     public int size() {
-        return this.cards.size();
+        return size;
     }
 
     /**
@@ -73,11 +73,8 @@ public class Deck {
      *         previously dealt.
      */
     public Card deal() {
-        this.size = this.size - 1;
-        if (this.size > 0) { // if size is greater then shuffle
-            return this.cards.get(this.size);
-        }
-        return null;
+        size--;
+        return cards.get(size);
     }
 
     /**
