@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 /**
  * This class provides a convenient way to test shuffling methods.
  */
@@ -88,6 +88,21 @@ public class Shuffler {
 	 * searching for an as-yet-unselected card.
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
+	
+	// The Randomizer method defined by CodeHS that uses Java's Randomizer class
+c static void efficientSelectionShuffle(int[] deck)
+	{
+		for(int k = 51; k >= 1; k--)
+		{
+			Random ran = new Random();
+			int r = ran.nextInt(k);
+			int temp = deck[r];
+			deck[r] = deck[k];
+			deck[k] = temp;
+		}
+	
+	}
+	
 	public static void selectionShuffle(int[] values) {
 		ArrayList<Integer> valuesList = new ArrayList<Integer>(); 
 		for(int i = 0; i < values.length; i++)
