@@ -65,14 +65,20 @@ public class Deck {
      */
        public void shuffle() {
         
-        	for(int k = cards.size(); k >= 1; k--)
+    public void shuffle() {
+        
+        	for(int k = cards.size() - 1; k >= 1; k--)
 		{
 			Random ran = new Random();
 			int r = ran.nextInt(k);
-			Card temp = cards.get(r);
-			cards.get(r) = cards.get(k);
-			cards.get(k) = temp;
+			Card cardR = cards.get(r);
+			Card cardK = cards.get(k);
+			cards.set(r, cardK);
+			cards.set(k, cardR);
+			
 		}
+        
+    }
         
     }
 
