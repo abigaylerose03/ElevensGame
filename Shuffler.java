@@ -92,7 +92,7 @@ public class Shuffler {
 	// The Randomizer method defined by CodeHS that uses Java's Randomizer class
 c static void efficientSelectionShuffle(int[] deck)
 	{
-		for(int k = 51; k >= 1; k--)
+		for(int k = deck.length; k >= 1; k--)
 		{
 			Random ran = new Random();
 			int r = ran.nextInt(k);
