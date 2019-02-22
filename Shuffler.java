@@ -8,7 +8,9 @@ public class Shuffler {
 	 * The number of consecutive shuffle steps to be performed in each call
 	 * to each sorting procedure.
 	 */
-	private static final int SHUFFLE_COUNT = 1;
+	private static final int SHUFFLE_COUNT = 5;
+
+	private static final int VALUE_COUNT = 10;
 
 
 	/**
@@ -18,7 +20,12 @@ public class Shuffler {
 	public static void main(String[] args) {
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive perfect shuffles:");
-		int[] values1 = {0, 1, 2, 3};
+
+		int[] values1 = new int[VALUE_COUNT];
+		for(int i = 0; i < values1.length; i++) {
+			values1[i] = i;
+		}
+
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
 			perfectShuffle(values1);
 			System.out.print("  " + j + ":");
@@ -29,9 +36,14 @@ public class Shuffler {
 		}
 		System.out.println();
 
+
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive efficient selection shuffles:");
-		int[] values2 = {0, 1, 2, 3};
+		int[] values2 = new int[VALUE_COUNT];
+		for(int i = 0; i < values2.length; i++) {
+			values2[i] = i;
+		}
+
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
 			selectionShuffle(values2);
 			System.out.print("  " + j + ":");
@@ -89,12 +101,12 @@ public class Shuffler {
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
 	public static void selectionShuffle(int[] values) {
-		for(int k = VALUE_COUNT - 1; k>=0; k--;) {
-			int r = (int)Math.random() * k); // the random integer
-			int temp = values[r];
-			values[r] = values[k];
-			values[k] = temp;			
-			
-		}
+        for( int k = VALUE_COUNT - 1; k >= 0; k-- ) {
+            int r = (int)(Math.random() * k);
+            int tmp = values[r]; // swap the values, random is stored in the temp
+            values[r] = values[k]; // random is set to the array numbers
+            values[k] = tmp; // array numbers is equal to random
+        }
+		
 	}
 }
